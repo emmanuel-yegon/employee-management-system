@@ -7,19 +7,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping(path = "/employee")
+@CrossOrigin("http://localhost:3000")
+@RequestMapping(path = "/api/v1/employees")
 public interface EmployeeRest {
 
-    @PostMapping(path = "/add")
+    @PostMapping()
     public ResponseEntity<String> addEmployee(@RequestBody(required = true)Map<String,String> requestMap);
 
-    @GetMapping(path = "/get")
-    public ResponseEntity<List<EmployeeWrapper>> getAllEmployee();
+    @GetMapping()
+    public ResponseEntity<List<EmployeeWrapper>> getAllEmployees();
 
-    @PostMapping(path = "/update")
+    @PutMapping()
     public ResponseEntity<String> updateEmployee(@RequestBody(required = true)Map<String, String> requestMap);
 
-    @PostMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable Integer id);
 
 }

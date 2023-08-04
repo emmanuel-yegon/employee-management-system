@@ -31,9 +31,9 @@ public class EmployeeRestImpl implements EmployeeRest {
     }
 
     @Override
-    public ResponseEntity<List<EmployeeWrapper>> getAllEmployee() {
+    public ResponseEntity<List<EmployeeWrapper>> getAllEmployees() {
         try {
-            return employeeService.getAllEmployee();
+            return employeeService.getAllEmployees();
         }catch (Exception ex){
             ex.printStackTrace();
         }

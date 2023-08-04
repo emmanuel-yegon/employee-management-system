@@ -10,7 +10,7 @@ public interface EmployeeService {
 
     ResponseEntity<String> addEmployee(Map<String, String> requestMap);
 
-    ResponseEntity<List<EmployeeWrapper>> getAllEmployee();
+    ResponseEntity<List<EmployeeWrapper>> getAllEmployees();
 
     ResponseEntity<String> updateEmployee(Map<String, String> requestMap);
 

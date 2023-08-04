@@ -60,15 +60,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employee.setFirstName(requetMap.get("firstName"));
         employee.setLastName(requetMap.get("lastName"));
-        employee.setEmail(requetMap.get("email"));
         employee.setContactNumber(requetMap.get("contactNumber"));
+        employee.setEmail(requetMap.get("email"));
+
         return employee;
     }
 
     @Override
-    public ResponseEntity<List<EmployeeWrapper>> getAllEmployee() {
+    public ResponseEntity<List<EmployeeWrapper>> getAllEmployees() {
         try {
-            return new ResponseEntity<>(employeeDao.getAllEmployee(), HttpStatus.OK);
+            return new ResponseEntity<>(employeeDao.getAllEmployees(), HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
         }

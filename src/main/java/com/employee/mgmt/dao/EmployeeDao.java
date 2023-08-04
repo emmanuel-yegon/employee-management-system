@@ -11,6 +11,6 @@ public interface EmployeeDao extends JpaRepository<Employee, Integer> {
 
     Employee findByEmailId(@Param("email") String email);
 
-    List<EmployeeWrapper> getAllEmployee();
+    List<EmployeeWrapper> getAllEmployees();
 
 }
