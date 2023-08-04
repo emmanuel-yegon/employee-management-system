@@ -43,8 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     private boolean validateEmployeeMap(Map<String, String> requestMap, boolean validateId) {
-        if (requestMap.containsKey("firstName") && requestMap.containsKey("lastName")
-                && requestMap.containsKey("email") && requestMap.containsKey("contactNumber")){
+        if ( requestMap.containsKey("email")){
             if (requestMap.containsKey("id") && validateId){
                 return true;
             } else if(!validateId){
@@ -54,8 +53,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return false;
     }
 
-    private Employee getEmployeeFromMap(Map<String,String> requetMap, boolean isAdd){
+    private Employee getEmployeeFromMap(Map<String,String> requetMap, Boolean isAdd){
         Employee employee = new Employee();
+        if (isAdd){
+            employee.setId(Integer.parseInt(requetMap.get("id")));
+        }
         employee.setFirstName(requetMap.get("firstName"));
         employee.setLastName(requetMap.get("lastName"));
         employee.setEmail(requetMap.get("email"));

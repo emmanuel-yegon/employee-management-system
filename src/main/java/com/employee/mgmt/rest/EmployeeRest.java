@@ -17,7 +17,7 @@ public interface EmployeeRest {
     public ResponseEntity<List<EmployeeWrapper>> getAllEmployee();
 
     @PostMapping(path = "/update")
-    public ResponseEntity<String> updateEmployee(@RequestBody Map<String, String> requestMap);
+    public ResponseEntity<String> updateEmployee(@RequestBody(required = true)Map<String, String> requestMap);
 
     @PostMapping(path = "/delete/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable Integer id);
