@@ -9,6 +9,8 @@ import java.io.Serializable;
 
 @NamedQuery(name = "Employee.findByEmailId", query = "select e from Employee e where e.email=:email")
 
+@NamedQuery(name = "Employee.getAllEmployee", query = "select new com.employee.mgmt.wrapper.EmployeeWrapper(e.id,e.firstName,e.lastName,e.contactNumber,e.email) from Employee e ")
+
 @Entity
 @Data
 @DynamicInsert
@@ -35,10 +37,5 @@ public class Employee implements Serializable {
     @Column(name = "contactNumber")
     private String contactNumber;
 
-    @Column(name = "role")
-    private String role;
-
-    @Column(name = "status")
-    private String status;
 
 }
