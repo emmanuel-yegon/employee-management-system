@@ -16,4 +16,6 @@ public interface EmployeeService {
 
     ResponseEntity<String> deleteEmployee(Integer id);
 
+    ResponseEntity<EmployeeWrapper> getEmployeeById(Integer id);
+
 }

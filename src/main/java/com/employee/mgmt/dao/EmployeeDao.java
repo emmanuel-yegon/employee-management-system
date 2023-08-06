@@ -13,4 +13,6 @@ public interface EmployeeDao extends JpaRepository<Employee, Integer> {
 
     List<EmployeeWrapper> getAllEmployees();
 
+    EmployeeWrapper getEmployeeById(@Param("id") Integer id);
+
 }

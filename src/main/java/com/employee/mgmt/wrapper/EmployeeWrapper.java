@@ -11,12 +11,13 @@ public class EmployeeWrapper {
     private String first_name;
     private String last_name;
     private String email;
-    private String contact_number;
-    public EmployeeWrapper(Integer id, String first_name, String last_name, String email, String contact_number) {
+
+    public EmployeeWrapper(Integer id, String first_name, String last_name, String email) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
-        this.contact_number = contact_number;
     }
+
+
 }

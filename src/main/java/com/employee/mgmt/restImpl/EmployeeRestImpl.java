@@ -60,4 +60,14 @@ public class EmployeeRestImpl implements EmployeeRest {
         return EmployeeUtils.getResponseEntity(EmployeeConstants.SOMETHING_WENT_WRONG,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Override
+    public ResponseEntity<EmployeeWrapper> getEmployeeById(Integer id) {
+        try {
+            return employeeService.getEmployeeById(id);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return  new ResponseEntity<>(new EmployeeWrapper(),HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }

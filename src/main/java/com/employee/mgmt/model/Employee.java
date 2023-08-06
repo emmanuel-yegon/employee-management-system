@@ -9,7 +9,10 @@ import java.io.Serializable;
 
 @NamedQuery(name = "Employee.findByEmailId", query = "select e from Employee e where e.email=:email")
 
-@NamedQuery(name = "Employee.getAllEmployees", query = "select new com.employee.mgmt.wrapper.EmployeeWrapper(e.id,e.firstName,e.lastName,e.email,e.contactNumber) from Employee e ")
+@NamedQuery(name = "Employee.getAllEmployees", query = "select new com.employee.mgmt.wrapper.EmployeeWrapper(e.id,e.firstName,e.lastName,e.email) from Employee e ")
+
+@NamedQuery(name = "Employee.getEmployeeById", query = "select new com.employee.mgmt.wrapper.EmployeeWrapper(e.id,e.firstName,e.lastName,e.email) from Employee e where e.id=:id")
+
 
 @Entity
 @Data
@@ -33,12 +36,5 @@ public class Employee implements Serializable {
 
     @Column(name = "email")
     private String email;
-
-    @Column(name = "contactNumber")
-    private String contactNumber;
-
-
-
-
 
 }

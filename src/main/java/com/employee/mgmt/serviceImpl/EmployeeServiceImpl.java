@@ -8,6 +8,7 @@ import com.employee.mgmt.utils.EmployeeUtils;
 import com.employee.mgmt.wrapper.EmployeeWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +61,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employee.setFirstName(requetMap.get("firstName"));
         employee.setLastName(requetMap.get("lastName"));
-        employee.setContactNumber(requetMap.get("contactNumber"));
         employee.setEmail(requetMap.get("email"));
 
         return employee;
@@ -86,7 +86,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     employeeDao.save(employee);
                     return EmployeeUtils.getResponseEntity("Employee Updated Successfully",HttpStatus.OK);
                 } else {
-                    return  EmployeeUtils.getResponseEntity("Employee id does not exist", HttpStatus.BAD_REQUEST);
+                    return  EmployeeUtils.getResponseEntity("Employee id does not exist", HttpStatus.NOT_FOUND);
                 }
             }else {
                 return EmployeeUtils.getResponseEntity(EmployeeConstants.INVALID_DATA,HttpStatus.BAD_REQUEST);
@@ -105,10 +105,26 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employeeDao.deleteById(id);
                 return EmployeeUtils.getResponseEntity("Employee Deleted Successfully",HttpStatus.OK);
             }
-            return EmployeeUtils.getResponseEntity("Employee id does not exist", HttpStatus.BAD_REQUEST);
+            return EmployeeUtils.getResponseEntity("Employee id does not exist", HttpStatus.NOT_FOUND);
         } catch (Exception ex){
             ex.printStackTrace();
         }
         return EmployeeUtils.getResponseEntity(EmployeeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    public ResponseEntity<EmployeeWrapper> getEmployeeById(Integer id) {
+        try {
+            Optional optional = employeeDao.findById(id);
+            if (!optional.isEmpty()){
+                employeeDao.getEmployeeById(id);
+                return new ResponseEntity<>(employeeDao.getEmployeeById(id), HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            //return EmployeeUtils.getResponseEntity("Employee id does not exist", HttpStatus.NOT_FOUND);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return new ResponseEntity<>(new EmployeeWrapper(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
