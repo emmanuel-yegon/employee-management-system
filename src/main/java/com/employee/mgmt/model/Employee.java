@@ -1,23 +1,22 @@
 package com.employee.mgmt.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serializable;
 
-@NamedQuery(name = "Employee.findByEmailId", query = "select e from Employee e where e.email=:email")
-
-@NamedQuery(name = "Employee.getAllEmployees", query = "select new com.employee.mgmt.wrapper.EmployeeWrapper(e.id,e.firstName,e.lastName,e.email) from Employee e ")
-
-@NamedQuery(name = "Employee.getEmployeeById", query = "select new com.employee.mgmt.wrapper.EmployeeWrapper(e.id,e.firstName,e.lastName,e.email) from Employee e where e.id=:id")
 
 
 @Entity
 @Data
 @DynamicInsert
 @DynamicUpdate
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "pg_employee", schema = "ems")
 public class Employee implements Serializable {
 
@@ -28,10 +27,10 @@ public class Employee implements Serializable {
     @Column(name = "id", columnDefinition = "serial")
     private Integer id;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "email")

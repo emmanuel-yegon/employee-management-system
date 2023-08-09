@@ -10,9 +10,10 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Replace "/api/**" with your API base path
                 .allowedOrigins("http://localhost:3000") // Replace with the origin of your frontend application
-                .allowedMethods("GET", "POST", "PUT", "DELETE","OPTIONS") // Allowed HTTP methods
-                .allowedHeaders("*") // Allowed request headers
-                .allowCredentials(true); // If you need to allow credentials (e.g., cookies, authentication)
+                .allowedMethods("PATCH","PUT","POST","GET","DELETE","OPTIONS") // Allowed HTTP methods
+                .allowedHeaders("Content-Type","X-Requested-With", "accept", "Origin", "Access-Control-Request-Method","Access-Control-Request-Headers")
+                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")// Allowed request headers
+                .allowCredentials(true);
     }
 
 }
